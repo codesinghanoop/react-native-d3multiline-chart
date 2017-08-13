@@ -8,7 +8,7 @@ import Svg,{ Circle, Line, G, Path, Text, Rect } from 'react-native-svg'
 import * as d3 from "d3";
 import * as scale from 'd3-scale';
 import _ from 'lodash'
-import { MultiLineChart } from 'file:///source'
+import { MultiLineChart } from 'react-native-d3multipleline-chart'
 
 var data =[ [{
     "y": "202",
