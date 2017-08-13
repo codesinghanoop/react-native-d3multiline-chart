@@ -1,0 +1,38 @@
+{
+  "name": "react-native-d3multipleline-chart",
+  "version": "1.0.0",
+  "description": "Android and iOS multipleline/line/scatter chart based on d3.js",
+  "main": "source.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codesinghanoop/react-native-d3multiline-chart.git"
+  },
+  "keywords": [
+    "multiline",
+    "line",
+    "scatterpoint",
+    "charts",
+    "d3.js",
+    "d3v4",
+    "Android",
+    "iOS",
+    "react-native-svg",
+    "multiline-graph",
+    "line-graph",
+    "scatterpoint-graph"
+  ],
+  "author": "Anoop Singh (anoop100singh@gmail.com)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/codesinghanoop/react-native-d3multiline-chart/issues"
+  },
+  "homepage": "https://github.com/codesinghanoop/react-native-d3multiline-chart#readme",
+  "dependencies": {
+    "d3": "^4.10.0",
+    "d3-shape": "^1.2.0",
+    "react-native-svg": "^5.4.1"
+  }
+}
