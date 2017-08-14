@@ -93,10 +93,10 @@ Note: In case of any misunderstanding please go through the example.
  
  -  Legends are available in the chart, this is the missing feature in [react-native-charts](https://github.com/tomauty/react-native-chart) and [react-native-pathjs-charts](https://github.com/capitalone/react-native-pathjs-charts).
  
- -  [](https://github.com/capitalone/react-native-pathjs-charts/issues/40) enhancement is added in this library.
+ -  [https://github.com/capitalone/react-native-pathjs-charts/issues/40](https://github.com/capitalone/react-native-pathjs-charts/issues/40) enhancement is added in this library.
  
 **Properties**
-data, leftAxisData, bottomAxisData, legendColor, legendText, minX, minY, maxX, maxY, scatterPlotEnable, dataPointsVisible, hideAxis, hideXAxisLabels, hideYAxisLabels, showLegends, axisColor, axisLabelColor, axisLineWidth, chartFontSize, Color, chartHeight, chartWidth, tickColorXAxis, tickColorYAxis, tickWidthXAxis, tickWidthYAxis, lineWidth, circleRadiusWidth, circleRadius, showTicks, legendStyle
+
 
 |  Name         | Type          |
 | ------------- |:-------------:| 
