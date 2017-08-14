@@ -11,7 +11,7 @@ Android and iOS multiline/line/scatterPoint chart based on d3.js
 
 **Try the example app**
 
-![Alt text](/Images/example.jpg?raw=true "Multiline graph")
+![Alt text](/Images/example.jpg?raw=true)
 
 **Usage**
 Note: In case of any misunderstanding please go through the example.
@@ -91,9 +91,9 @@ Note: In case of any misunderstanding please go through the example.
 
  -  Desired color to the lines as well as the data points, data points are apperaring at perfect positions with perfect fill color and highlight of radius is working fine, these functionality is not appropriately provided by react-native-charts and  react-native-pathjs-charts
  
- -  Legends are available in the chart, this is the missing feature in [a link](https://github.com/tomauty/react-native-chart) and [a link](https://github.com/capitalone/react-native-pathjs-charts).
+ -  Legends are available in the chart, this is the missing feature in [react-native-charts](https://github.com/tomauty/react-native-chart) and [react-native-pathjs-charts](https://github.com/capitalone/react-native-pathjs-charts).
  
- -  [a link](https://github.com/capitalone/react-native-pathjs-charts/issues/40) enhancement is added in this library.
+ -  [](https://github.com/capitalone/react-native-pathjs-charts/issues/40) enhancement is added in this library.
  
 **Properties**
 data, leftAxisData, bottomAxisData, legendColor, legendText, minX, minY, maxX, maxY, scatterPlotEnable, dataPointsVisible, hideAxis, hideXAxisLabels, hideYAxisLabels, showLegends, axisColor, axisLabelColor, axisLineWidth, chartFontSize, Color, chartHeight, chartWidth, tickColorXAxis, tickColorYAxis, tickWidthXAxis, tickWidthYAxis, lineWidth, circleRadiusWidth, circleRadius, showTicks, legendStyle
