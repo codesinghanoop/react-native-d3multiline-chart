@@ -131,6 +131,11 @@ Note: In case of any misunderstanding please go through the example.
 | circleRadius | propTypes.number |
 | showTicks | propTypes.bool |
 | legendStyle | propTypes.object |
+| showDashedLine | propTypes.bool |
+| lineStrokeDashArray | propTypes.array |
+| lineStrokeOpacity | propTypes.number |
+| GraphWidth | propTypes.number |
+| GraphHeight | propTypes.number |
 
 ----------
 
@@ -157,3 +162,16 @@ Note: In case of any misunderstanding please go through the example.
 **License**
     
 Apache-2.0
+
+"multiline",
+    "line",
+    "scatterpoint",
+    "charts",
+    "d3.js",
+    "d3v4",
+    "Android",
+    "iOS",
+    "react-native-svg",
+    "multiline-graph",
+    "line-graph",
+    "scatterpoint-graph"

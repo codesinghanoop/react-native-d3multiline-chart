@@ -49,6 +49,11 @@ static defaultProps : any = {
         circleRadiusWidth: "2.5",
         circleRadius: 3,
         showTicks: true,
+        lineStrokeOpacity: 1,
+        lineStrokeDashArray: [3,3],
+        showDashedLine: false,
+        GraphWidth: 400,
+        GraphHeight: 500,
         legendStyle: {
             width: 50,
             fillOpacity: 0.5,
@@ -65,7 +70,7 @@ constructor(props) {
 
 treeManipulation()
 {
-    const { data, leftAxisData, bottomAxisData, legendColor, legendText, minX, minY, maxX, maxY, scatterPlotEnable, dataPointsVisible, hideAxis, hideXAxisLabels, hideYAxisLabels, showLegends, axisColor, axisLabelColor, axisLineWidth, chartFontSize, Color, chartHeight, chartWidth, tickColorXAxis, tickColorYAxis, tickWidthXAxis, tickWidthYAxis, lineWidth, circleRadiusWidth, circleRadius, showTicks, legendStyle } = this.props
+    const { data, leftAxisData, bottomAxisData, legendColor, legendText, minX, minY, maxX, maxY, scatterPlotEnable, dataPointsVisible, hideAxis, hideXAxisLabels, hideYAxisLabels, showLegends, axisColor, axisLabelColor, axisLineWidth, chartFontSize, Color, chartHeight, chartWidth, tickColorXAxis, tickColorYAxis, tickWidthXAxis, tickWidthYAxis, lineWidth, circleRadiusWidth, circleRadius, showTicks, legendStyle, lineStrokeOpacity, lineStrokeDashArray, showDashedLine } = this.props
 
     const xScale = d3.scaleLinear().range(
         [MARGINS.left, chartWidth - MARGINS.right]).domain([minX,maxX]),
@@ -156,7 +161,7 @@ treeManipulation()
                     })
    let linePointsData = formatLineData(data)
    linePathOne = scatterPlotEnable?null: _.map(linePointsData,(data,i) =>{
-                    return (<Path key={i} d={ data } fill="none" stroke={ Color[i] ? Color[i] : '#000'} strokeWidth={lineWidth} fill={'none'} />)
+                    return (<Path strokeOpacity={lineStrokeOpacity} strokeDasharray={ showDashedLine ? lineStrokeDashArray : ''} key={i} d={ data } fill="none" stroke={ Color[i] ? Color[i] : '#000'} strokeWidth={lineWidth} fill={'none'} />)
                  })
     let dataPointsColor = buildColorArray(data,Color) 
 
@@ -197,8 +202,9 @@ treeManipulation()
 render()
 {
     this.treeManipulation()
+    const { GraphWidth, GraphHeight } = this.props
     return (
-            <Svg width = {400} height = {500}>
+            <Svg width = {GraphWidth} height = {GraphHeight}>
                 <G>
                     { yCoordinate }
                     { linePathOne }
