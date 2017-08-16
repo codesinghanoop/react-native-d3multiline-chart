@@ -50,7 +50,7 @@ static defaultProps : any = {
         circleRadius: 3,
         showTicks: true,
         lineStrokeOpacity: 1,
-        lineStrokeDashArray: [3,3],
+        lineStrokeDashArray: ['3','0'],
         showDashedLine: false,
         GraphWidth: 400,
         GraphHeight: 500,
@@ -161,7 +161,7 @@ treeManipulation()
                     })
    let linePointsData = formatLineData(data)
    linePathOne = scatterPlotEnable?null: _.map(linePointsData,(data,i) =>{
-                    return (<Path strokeOpacity={lineStrokeOpacity} strokeDasharray={ showDashedLine ? lineStrokeDashArray : ''} key={i} d={ data } fill="none" stroke={ Color[i] ? Color[i] : '#000'} strokeWidth={lineWidth} fill={'none'} />)
+                    return (<Path strokeOpacity={lineStrokeOpacity} strokeDasharray={ showDashedLine ? lineStrokeDashArray[i] : ''} key={i} d={ data } fill="none" stroke={ Color[i] ? Color[i] : '#000'} strokeWidth={lineWidth} fill={'none'} />)
                  })
     let dataPointsColor = buildColorArray(data,Color) 
 
