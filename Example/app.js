@@ -68,7 +68,7 @@ export default class Example extends Component {
   render() {
     return (
      <View style={styles.container}>
-       <MultiLineChart showDashedLine={true} data= {data} leftAxisData= {leftAxisData} bottomAxisData= {bottomAxisData} legendColor= {legendColor}
+       <MultiLineChart data= {data} leftAxisData= {leftAxisData} bottomAxisData= {bottomAxisData} legendColor= {legendColor}
         legendText= {legendText} minX= {minX} maxX= {maxX} minY= {minY} maxY= {maxY} scatterPlotEnable= {false} dataPointsVisible= {true} Color= {Color} />
      </View>
     );
