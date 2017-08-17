@@ -107,6 +107,8 @@ Note: In case of any misunderstanding please go through the example.
 | data   | PropTypes.array|
 | leftAxisData      | propTypes.array |
 | bottomAxisData      | propTypes.array |
+| leftAxisDataToShow  | propTypes.array |
+| bottomAxisDataToShow  | propTypes.array |
 | legendColor      | propTypes.array |
 | legendText      | propTypes.array |
 | minX      | propTypes.number |

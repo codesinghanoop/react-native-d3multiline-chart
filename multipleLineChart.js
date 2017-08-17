@@ -54,6 +54,8 @@ static defaultProps : any = {
         showDashedLine: false,
         GraphWidth: 400,
         GraphHeight: 500,
+        bottomAxisDataToShow: bottomAxisData,
+        leftAxisDataToShow: leftAxisData,
         legendStyle: {
             width: 50,
             fillOpacity: 0.5,
@@ -70,7 +72,7 @@ constructor(props) {
 
 treeManipulation()
 {
-    const { data, leftAxisData, bottomAxisData, legendColor, legendText, minX, minY, maxX, maxY, scatterPlotEnable, dataPointsVisible, hideAxis, hideXAxisLabels, hideYAxisLabels, showLegends, axisColor, axisLabelColor, axisLineWidth, chartFontSize, Color, chartHeight, chartWidth, tickColorXAxis, tickColorYAxis, tickWidthXAxis, tickWidthYAxis, lineWidth, circleRadiusWidth, circleRadius, showTicks, legendStyle, lineStrokeOpacity, lineStrokeDashArray, showDashedLine } = this.props
+    const { data, leftAxisData, bottomAxisData, legendColor, legendText, minX, minY, maxX, maxY, scatterPlotEnable, dataPointsVisible, hideAxis, hideXAxisLabels, hideYAxisLabels, showLegends, axisColor, axisLabelColor, axisLineWidth, chartFontSize, Color, chartHeight, chartWidth, tickColorXAxis, tickColorYAxis, tickWidthXAxis, tickWidthYAxis, lineWidth, circleRadiusWidth, circleRadius, showTicks, legendStyle, lineStrokeOpacity, lineStrokeDashArray, showDashedLine, leftAxisDataToShow, bottomAxisDataToShow } = this.props
 
     const xScale = d3.scaleLinear().range(
         [MARGINS.left, chartWidth - MARGINS.right]).domain([minX,maxX]),
@@ -111,7 +113,7 @@ treeManipulation()
                                                                         textAnchor='middle'
                                                                         x={xScale(d)}
                                                                         y={chartHeight+20}>
-                                                                        {d}
+                                                                        {bottomAxisDataToShow[i]}
                                                                     </Text>
                                                                 })
                                     }
@@ -147,7 +149,7 @@ treeManipulation()
                                                                             textAnchor='middle'
                                                                             x={xx+10}
                                                                             y={yScale(d)-8}>
-                                                                            {d}
+                                                                            {leftAxisDataToShow[i]}
                                                                         </Text>
                                                                     })
                                         }

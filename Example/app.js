@@ -62,7 +62,14 @@ let minY= 134, maxY= 215
 
 //since there are only two lines
 var Color = ['#00b7d4','red']
-
+//general data to represent ticks in y-axis and it doesn't take part in calculation
+let bottomAxisDataToShow = [
+    "Jan 2017", "Feb 2017", "Mar 2017", "Apr 2017", "May 2017", "Jun 2017", "Jul 2017", "Aug 2017"
+]
+//general data to represent ticks in y-axis and it doesn't take part in calculation
+let leftAxisDataToShow = [
+    "10%","20%","30%","40%","50%","60%","70%","80%","90%"
+]
 export default class Example extends Component {
 
   render() {
