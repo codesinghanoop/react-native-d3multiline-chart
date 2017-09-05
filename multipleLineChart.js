@@ -56,6 +56,7 @@ static defaultProps : any = {
         GraphHeight: 500,
         bottomAxisDataToShow: bottomAxisData,
         leftAxisDataToShow: leftAxisData,
+        pointDataToShowOnGraph: 'Y',
         legendStyle: {
             width: 50,
             fillOpacity: 0.5,
@@ -72,7 +73,7 @@ constructor(props) {
 
 treeManipulation()
 {
-    const { data, leftAxisData, bottomAxisData, legendColor, legendText, minX, minY, maxX, maxY, scatterPlotEnable, dataPointsVisible, hideAxis, hideXAxisLabels, hideYAxisLabels, showLegends, axisColor, axisLabelColor, axisLineWidth, chartFontSize, Color, chartHeight, chartWidth, tickColorXAxis, tickColorYAxis, tickWidthXAxis, tickWidthYAxis, lineWidth, circleRadiusWidth, circleRadius, showTicks, legendStyle, lineStrokeOpacity, lineStrokeDashArray, showDashedLine, leftAxisDataToShow, bottomAxisDataToShow } = this.props
+    const { data, leftAxisData, bottomAxisData, legendColor, legendText, minX, minY, maxX, maxY, scatterPlotEnable, dataPointsVisible, hideAxis, hideXAxisLabels, hideYAxisLabels, showLegends, axisColor, axisLabelColor, axisLineWidth, chartFontSize, Color, chartHeight, chartWidth, tickColorXAxis, tickColorYAxis, tickWidthXAxis, tickWidthYAxis, lineWidth, circleRadiusWidth, circleRadius, showTicks, legendStyle, lineStrokeOpacity, lineStrokeDashArray, showDashedLine, leftAxisDataToShow, bottomAxisDataToShow, pointDataToShowOnGraph } = this.props
 
     const xScale = d3.scaleLinear().range(
         [MARGINS.left, chartWidth - MARGINS.right]).domain([minX,maxX]),
@@ -114,7 +115,7 @@ treeManipulation()
                                                                         x={xScale(d)}
                                                                         y={chartHeight+20}>
                                                                         {bottomAxisDataToShow[i]}
-                                                                    </Text>
+                                                                       </Text>
                                                                 })
                                     }
                                 </G>
@@ -172,7 +173,7 @@ treeManipulation()
                                             let text
                                                 text= <Text
                                                     fontSize= {chartFontSize}
-                                                    x={xScale(d.x)} y={yScale(d.y)+5} >{ d.x }</Text>
+                                                    x={xScale(d.x)} y={yScale(d.y)+5} >{ pointDataToShowOnGraph == 'Y'? d.y : d.x}</Text>
                                             return (
                                                 <G key={i}>
                                                 <Circle key={'circle_' + i} strokeWidth={circleRadiusWidth} stroke= {dataPointsColor[i]} d= {d.x} fill= {'white'} cx= {xScale(d.x) } cy= {yScale(d.y) } r= {circleRadius} />

@@ -142,6 +142,7 @@ Note: In case of any misunderstanding please go through the example.
 | lineStrokeOpacity | propTypes.number |
 | GraphWidth | propTypes.number |
 | GraphHeight | propTypes.number |
+| pointDataToShowOnGraph | propTypes.string |
 
 ----------
 
