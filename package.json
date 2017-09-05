@@ -1,6 +1,6 @@
 {
   "name": "react-native-d3multiline-chart",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Android and iOS multipleline/line/scatter chart based on d3.js",
   "main": "source.js",
   "scripts": {
