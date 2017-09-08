@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/codesinghanoop/react-native-d3multiline-chart#readme",
   "dependencies": {
-    "d3": "^4.10.0",
+    "d3": "4.10.0",
     "d3-shape": "^1.2.0",
     "react-native-svg": "^5.4.1"
   }

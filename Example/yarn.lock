@@ -3420,9 +3420,9 @@ react-devtools-core@2.3.1:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
-react-native-d3multiline-chart@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/react-native-d3multiline-chart/-/react-native-d3multiline-chart-1.0.8.tgz#e4508c16617796f6c58911ba9fd21db606a7bf87"
+react-native-d3multiline-chart@^1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/react-native-d3multiline-chart/-/react-native-d3multiline-chart-1.0.11.tgz#01171d83b56d11a96772299009d3912934231a5e"
   dependencies:
     d3 "^4.10.0"
     d3-shape "^1.2.0"
