@@ -76,7 +76,15 @@ export default class Example extends Component {
     return (
      <View style={styles.container}>
        <MultiLineChart data= {data} leftAxisData= {leftAxisData} bottomAxisData= {bottomAxisData} legendColor= {legendColor}
-        legendText= {legendText} minX= {minX} maxX= {maxX} minY= {minY} maxY= {maxY} scatterPlotEnable= {false} dataPointsVisible= {true} Color= {Color} />
+        legendText= {legendText} minX= {minX} maxX= {maxX} minY= {minY} maxY= {maxY} scatterPlotEnable= {false} dataPointsVisible= {true} Color= {Color}
+        bottomAxisDataToShow={bottomAxisDataToShow}
+        circleLegendType= {true}
+        fillArea= {true}
+        yAxisGrid= {false}
+        xAxisGrid= {false}
+        hideXAxis= {false}
+        hideYAxis= {false}
+        inclindTick= {true} />
      </View>
     );
   }
@@ -87,6 +95,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF'
+    backgroundColor: 'blue'
   }
 });

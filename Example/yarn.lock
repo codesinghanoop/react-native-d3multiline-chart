@@ -4070,6 +4070,10 @@ supports-color@^4.0.0:
   dependencies:
     has-flag "^2.0.0"
 
+svg-path-properties@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/svg-path-properties/-/svg-path-properties-0.4.1.tgz#70bfea1330c9b87a70eb7b87343086b26c6aa7b3"
+
 symbol-tree@^3.2.1:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.2.tgz#ae27db38f660a7ae2e1c3b7d1bc290819b8519e6"
