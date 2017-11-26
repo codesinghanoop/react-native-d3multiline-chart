@@ -63,8 +63,15 @@ static defaultProps : any = {
             height: 20,
             strokeWidth: 2,
             legendFontSize: 12,
-            legentTextFill: 'white'
-        } 
+            legentTextFill: 'black'
+        },
+        circleLegendType: true,
+        fillArea: false,
+        yAxisGrid: false,
+        xAxisGrid: false,
+        hideXAxis: false,
+        hideYAxis: false,
+        inclindTick: true
 	};    
 
 constructor(props) {
@@ -73,37 +80,36 @@ constructor(props) {
 
 treeManipulation()
 {
-    const { data, leftAxisData, bottomAxisData, legendColor, legendText, minX, minY, maxX, maxY, scatterPlotEnable, dataPointsVisible, hideAxis, hideXAxisLabels, hideYAxisLabels, showLegends, axisColor, axisLabelColor, axisLineWidth, chartFontSize, Color, chartHeight, chartWidth, tickColorXAxis, tickColorYAxis, tickWidthXAxis, tickWidthYAxis, lineWidth, circleRadiusWidth, circleRadius, showTicks, legendStyle, lineStrokeOpacity, lineStrokeDashArray, showDashedLine, leftAxisDataToShow, bottomAxisDataToShow, pointDataToShowOnGraph } = this.props
-
+    const { data, leftAxisData, bottomAxisData, legendColor, legendText, minX, minY, maxX, maxY, scatterPlotEnable, dataPointsVisible, hideAxis, hideXAxisLabels, hideYAxisLabels, showLegends, axisColor, axisLabelColor, axisLineWidth, chartFontSize, Color, chartHeight, chartWidth, tickColorXAxis, tickColorYAxis, tickWidthXAxis, tickWidthYAxis, lineWidth, circleRadiusWidth, circleRadius, showTicks, legendStyle, lineStrokeOpacity, lineStrokeDashArray, showDashedLine, leftAxisDataToShow, bottomAxisDataToShow, pointDataToShowOnGraph, circleLegendType, fillArea } = this.props
+    const { yAxisGrid, xAxisGrid, hideXAxis, hideYAxis, inclindTick } = this.props
     const xScale = d3.scaleLinear().range(
         [MARGINS.left, chartWidth - MARGINS.right]).domain([minX,maxX]),
         yScale = d3.scaleLinear().range(
             [chartHeight - MARGINS.top, MARGINS.bottom]).domain([minY,maxY]),
         xAxis = d3.axisBottom(xScale),
         yAxis = d3.axisLeft(yScale).ticks(d3.timeDay, 1)
-        .tickFormat(d3.timeFormat("%a %d")); 
-
+        .tickFormat(d3.timeFormat("%a %d"));      
     const TICKSIZE = chartWidth / 35
         let x = 0 ,y = chartHeight;
         let endX = x + chartWidth
         let endY = y
     xCoordinate =hideAxis ? null: <G fill='none'>
-                                    <Line
+                                   {hideXAxis ?  null : <Line
                                     stroke={axisColor}
                                     strokeWidth={axisLineWidth}
-                                    x1={x+10}
-                                    x2={endX+10}
+                                    x1={x+30}
+                                    x2={endX+30}
                                     y1={y}
-                                    y2={endY} />
+                                    y2={endY} />}
                                     {showTicks?_.map(bottomAxisData,function(d,i) {
                                     return     <Line
                                                 key={i}
                                                 stroke={tickColorXAxis}
                                                 strokeWidth={tickWidthXAxis}
-                                                x1={xScale(d)}
+                                                x1={xScale(d)+10}
                                                 y1={y}
-                                                x2={xScale(d)}
-                                                y2={y + TICKSIZE} />
+                                                x2={inclindTick? xScale(d)-2 : xScale(d)+10}
+                                                y2={xAxisGrid?20 : y + TICKSIZE} />
                                     }) : null}
                                     {
                                         hideXAxisLabels ? null: _.map(bottomAxisData,function(d,i) {
@@ -112,8 +118,8 @@ treeManipulation()
                                                                         fill={axisLabelColor}
                                                                         fontSize= {chartFontSize}
                                                                         textAnchor='middle'
-                                                                        x={xScale(d)}
-                                                                        y={chartHeight+20}>
+                                                                        x={inclindTick? xScale(d)-2 : xScale(d)+10}
+                                                                        y={chartHeight+10}>
                                                                         {bottomAxisDataToShow[i]}
                                                                        </Text>
                                                                 })
@@ -124,22 +130,22 @@ treeManipulation()
         let endXX = xx
         let endYY = yy - chartWidth
     yCoordinate = hideAxis ? null: <G fill='none'>
-                                        <Line
+                                       {hideYAxis? null : <Line
                                         stroke={axisColor}
                                         strokeWidth={axisLineWidth}
-                                        x1={xx+30}
-                                        x2={endXX+30}
+                                        x1={xx+40}
+                                        x2={endXX+40}
                                         y1={yy}
-                                        y2={endYY} />
+                                        y2={endYY} />}
                                         {showTicks?_.map(leftAxisData,function(d,i) {
                                         return      <Line
                                                     key={i}
                                                     stroke={tickColorYAxis}
                                                     strokeWidth={tickWidthYAxis}
-                                                    x1={xx+30}
+                                                    x1={xx+40}
                                                     y1={yScale(d)}
-                                                    x2={xx + 20}
-                                                    y2={yScale(d)} />
+                                                    x2={yAxisGrid?chartWidth-10 : xx + 30}
+                                                    y2={inclindTick? yScale(d)-5 : yScale(d)} />
                                         }) : null}
                                         {
                                             hideYAxisLabels ? null : _.map(leftAxisData,function(d,i) {
@@ -148,8 +154,8 @@ treeManipulation()
                                                                             fill={axisLabelColor}
                                                                             fontSize= {chartFontSize}
                                                                             textAnchor='middle'
-                                                                            x={xx+10}
-                                                                            y={yScale(d)-8}>
+                                                                            x={inclindTick? xx+25 : xx+20}
+                                                                            y={inclindTick? yScale(d)-20 : yScale(d)-8}>
                                                                             {leftAxisDataToShow[i]}
                                                                         </Text>
                                                                     })
@@ -157,14 +163,14 @@ treeManipulation()
                                     </G>  
    var lineGen = d3.line()
                     .x(function(d) {
-                        return xScale(d.x);
+                        return xScale(d.x)+10;
                     })
                     .y(function(d) {
                         return yScale(d.y);
                     })
    let linePointsData = formatLineData(data)
    linePathOne = scatterPlotEnable?null: _.map(linePointsData,(data,i) =>{
-                    return (<Path strokeOpacity={lineStrokeOpacity} strokeDasharray={ showDashedLine ? lineStrokeDashArray[i] : ''} key={i} d={ data } fill="none" stroke={ Color[i] ? Color[i] : '#000'} strokeWidth={lineWidth} fill={'none'} />)
+                    return (<Path strokeOpacity={lineStrokeOpacity} strokeDasharray={ showDashedLine ? lineStrokeDashArray[i] : ''} key={i} d={ data } fill={ fillArea? Color[i] ? Color[i] : '#000' : 'none'} stroke={ Color[i] ? Color[i] : '#000'} strokeWidth={lineWidth} />)
                  })
     let dataPointsColor = buildColorArray(data,Color) 
 
@@ -173,16 +179,16 @@ treeManipulation()
                                             let text
                                                 text= <Text
                                                     fontSize= {chartFontSize}
-                                                    x={xScale(d.x)} y={yScale(d.y)+5} >{ pointDataToShowOnGraph == 'Y'? d.y : d.x}</Text>
+                                                    x={xScale(d.x)+10} y={yScale(d.y)+5} >{ pointDataToShowOnGraph == 'Y'? d.y : d.x}</Text>
                                             return (
                                                 <G key={i}>
-                                                <Circle key={'circle_' + i} strokeWidth={circleRadiusWidth} stroke= {dataPointsColor[i]} d= {d.x} fill= {'white'} cx= {xScale(d.x) } cy= {yScale(d.y) } r= {circleRadius} />
+                                                <Circle key={'circle_' + i} strokeWidth={circleRadiusWidth} stroke= {dataPointsColor[i]} d= {d.x} fill= {'white'} cx= {xScale(d.x)+10} cy= {yScale(d.y) } r= {circleRadius} />
                                                 {text}
                                                 </G>
                                                 )
                                             }) : null
 
-   legend = showLegends? createLegend(legendColor,legendText,chartWidth,MARGINS,legendStyle) : null
+   legend = showLegends? createLegend(legendColor,legendText,chartWidth,MARGINS,legendStyle,circleLegendType) : null
 
    function formatLineData(data) 
    {
@@ -196,9 +202,9 @@ treeManipulation()
         for(var i = 0;i < lineDataArray.length; i++)
         {
             linePointsData.push(lineGen(lineDataArray[i]));
-        } 
+        }
   
-        return linePointsData 
+        return linePointsData
     }    
 }
 
@@ -210,10 +216,10 @@ render()
             <Svg width = {GraphWidth} height = {GraphHeight}>
                 <G>
                     { yCoordinate }
+                    { xCoordinate }
                     { linePathOne }
                     { circleInFirstLine }
                     { legend }
-                    { xCoordinate }
                 </G>
             </Svg>
     )

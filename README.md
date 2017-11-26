@@ -11,9 +11,15 @@ Android and iOS multiline/line/scatterPoint chart based on d3.js
 
 **Try the example app**
 
+![](https://github.com/codesinghanoop/react-native-d3multiline-chart/blob/master/Images/fillArea.png)
+
+![](https://github.com/codesinghanoop/react-native-d3multiline-chart/blob/master/Images/withGrid.png)
+
 ![](https://github.com/codesinghanoop/react-native-d3multiline-chart/blob/master/Images/example.png)
 
 ![](https://github.com/codesinghanoop/react-native-d3multiline-chart/blob/master/Images/dashedLine.png)
+
+![](https://github.com/codesinghanoop/react-native-d3multiline-chart/blob/master/Images/scatterPoints.png)
 
 ![](https://github.com/codesinghanoop/react-native-d3multiline-chart/blob/master/Images/scatterPoints.png)
 
@@ -143,6 +149,13 @@ Note: In case of any misunderstanding please go through the example.
 | GraphWidth | propTypes.number |
 | GraphHeight | propTypes.number |
 | pointDataToShowOnGraph | propTypes.string |
+| circleLegendType | propTypes.bool |
+| fillArea | propTypes.bool |
+| yAxisGrid | propTypes.bool |
+| xAxisGrid | propTypes.bool |
+| hideXAxis | propTypes.bool |
+| hideYAxis | propTypes.bool |
+| inclindTick | propTypes.bool |
 
 ----------
 
@@ -150,11 +163,11 @@ Note: In case of any misunderstanding please go through the example.
 
  -  Add animation to the graph
 
+ -  Implement draw line animation
+
  -  Add test
  
- -  Add custom legend
- 
- -  Code clean
+ -  Add custom legend (Two kind of legend available, circle and rectangle)
 
 ----------
 
