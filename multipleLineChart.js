@@ -280,7 +280,9 @@ export default class MulipleLineChart extends Component {
               x={xScale (d.x) + 10}
               y={yScale (d.y) + 5}
             >
-              {pointDataToShowOnGraph == 'Y' ? d.y : d.x}
+              {pointDataToShowOnGraph == 'Y'
+                ? d.y
+                : pointDataToShowOnGraph == 'X' ? d.x : ''}
             </Text>
           );
           return (

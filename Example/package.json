@@ -9,7 +9,7 @@
 	"dependencies": {
 		"react": "16.0.0-alpha.12",
 		"react-native": "0.47.1",
-		"react-native-d3multiline-chart": "^1.0.13",
+		"react-native-d3multiline-chart": "^1.0.15",
 		"svg-path-properties": "^0.4.1"
 	},
 	"devDependencies": {
