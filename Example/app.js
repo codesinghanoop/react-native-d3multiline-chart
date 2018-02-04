@@ -171,12 +171,12 @@ var dataB = [
 let leftAxisData = [134, 144, 154, 164, 174, 184, 194, 204, 215];
 let bottomAxisData = [2000, 2002, 2004, 2006, 2008, 2010];
 let legendColor = ['#00b7d4', 'red', 'black'];
-let legendText = ['sales', 'year'];
+let legendText = ['sales', 'year', 'profit'];
 let minX = 2000, maxX = 2010;
 let minY = 134, maxY = 215;
 
 //since there are only two lines
-var Color = ['#00b7d4', 'red'];
+var Color = ['#00b7d4', 'red', 'black'];
 //general data to represent ticks in y-axis and it doesn't take part in calculation
 let bottomAxisDataToShow = [
   'Jan 2017',
@@ -231,15 +231,11 @@ export default class Example extends Component {
           xAxisGrid={false}
           hideXAxis={false}
           hideYAxis={false}
-          inclindTick={true}
+          inclindTick={false}
           pointDataToShowOnGraph=""
           animation={true}
           duration={1500}
           delay={1000}
-        />
-        <TouchableOpacity
-          style={{height: 40, width: 200, backgroundColor: 'black'}}
-          onPress={() => this.setState ({data: dataB})}
         />
       </View>
     );
