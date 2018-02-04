@@ -11,7 +11,7 @@ Android and iOS multiline/line/scatterPoint chart based on d3.js
 
 **Try the example app**
 
-![](https://github.com/codesinghanoop/react-native-d3multiline-chart/blob/master/Images/Drawing_line_Animation.png)
+![](https://github.com/codesinghanoop/react-native-d3multiline-chart/blob/master/Images/Drawing_line_Animation.gif)
 
 ![](https://github.com/codesinghanoop/react-native-d3multiline-chart/blob/master/Images/fillArea.png)
 
