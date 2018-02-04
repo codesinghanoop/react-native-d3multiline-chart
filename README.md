@@ -11,6 +11,8 @@ Android and iOS multiline/line/scatterPoint chart based on d3.js
 
 **Try the example app**
 
+![](https://github.com/codesinghanoop/react-native-d3multiline-chart/blob/master/Images/Drawing_line_Animation.png)
+
 ![](https://github.com/codesinghanoop/react-native-d3multiline-chart/blob/master/Images/fillArea.png)
 
 ![](https://github.com/codesinghanoop/react-native-d3multiline-chart/blob/master/Images/withGrid.png)
@@ -163,11 +165,11 @@ Note: In case of any misunderstanding please go through the example.
 
  -  Add animation to the graph
 
- -  Implement draw line animation
+ -  Implement draw line animation - Check (Thanks Waheguruji 🙏)
 
  -  Add test
  
- -  Add custom legend (Two kind of legend available, circle and rectangle)
+ -  Add custom legend - Check (Two kind of legend available, circle and rectangle)
 
 ----------
 
