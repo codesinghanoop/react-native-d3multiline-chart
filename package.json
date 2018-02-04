@@ -11,7 +11,9 @@
     "url": "git+https://github.com/codesinghanoop/react-native-d3multiline-chart.git"
   },
   "keywords": [
+    "animated",
     "multiline",
+    "drawing",
     "line",
     "scatterpoint",
     "charts",

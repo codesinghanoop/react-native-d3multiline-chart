@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Animated} from 'react-native';
 import Svg, {Circle, Line, G, Path, Text, Rect} from 'react-native-svg';
 import * as d3 from 'd3';
 import * as scale from 'd3-scale';
 import _ from 'lodash';
-import createLegend from './util/createLegend';
+import createLegend from './utils/createLegend';
+import NativePath from './AnimatedSVG';
+import {svgPathProperties} from 'svg-path-properties';
 import {
   calculateOverallLineChartData,
   buildColorArray,
-} from './util/dataCalculation';
+} from './utils/dataCalculation';
 import {dummyData, leftAxisData, bottomAxisData} from './dummyData';
 
 var linePathOne,
@@ -28,6 +30,17 @@ var WIDTH = 380,
     bottom: 20,
     left: 30,
   };
+
+function createLineProps (path) {
+  const properties = svgPathProperties (path);
+  const length = properties.getTotalLength ();
+  console.log ('the length', length);
+  return {
+    d: path,
+    strokeDashoffset: new Animated.Value (length),
+    strokeDasharray: [length, length],
+  };
+}
 
 export default class MulipleLineChart extends Component {
   static defaultProps: any = {
@@ -78,10 +91,30 @@ export default class MulipleLineChart extends Component {
     hideXAxis: false,
     hideYAxis: false,
     inclindTick: true,
+    animation: true,
+    delay: 500,
+    duration: 2000,
   };
 
   constructor (props) {
     super (props);
+    // this.lineAnimated = new Array (2);
+  }
+
+  animate () {
+    const {delay, duration} = this.props;
+    const animate = [Animated.delay (delay)];
+    this.lineAnimated.forEach (element => {
+      animate.push (
+        Animated.parallel ([
+          Animated.timing (element.strokeDashoffset, {
+            toValue: 0,
+            duration,
+          }),
+        ])
+      );
+    });
+    Animated.sequence (animate).start ();
   }
 
   treeManipulation () {
@@ -125,6 +158,7 @@ export default class MulipleLineChart extends Component {
       pointDataToShowOnGraph,
       circleLegendType,
       fillArea,
+      animation,
     } = this.props;
     const {
       yAxisGrid,
@@ -133,6 +167,7 @@ export default class MulipleLineChart extends Component {
       hideYAxis,
       inclindTick,
     } = this.props;
+    this.lineAnimated = new Array (data.length);
     const xScale = d3
       .scaleLinear ()
       .range ([MARGINS.left, chartWidth - MARGINS.right])
@@ -244,6 +279,8 @@ export default class MulipleLineChart extends Component {
                 );
               })}
         </G>;
+    // M40,74.5679012345679L73,20L106,171.11111111111111L139,87.16049382716051L139,360L370,183.70370370370372
+
     var lineGen = d3
       .line ()
       .x (function (d) {
@@ -252,22 +289,37 @@ export default class MulipleLineChart extends Component {
       .y (function (d) {
         return yScale (d.y);
       });
+
     let linePointsData = formatLineData (data);
     linePathOne = scatterPlotEnable
       ? null
-      : _.map (linePointsData, (data, i) => {
-          return (
-            <Path
-              strokeOpacity={lineStrokeOpacity}
-              strokeDasharray={showDashedLine ? lineStrokeDashArray[i] : ''}
-              key={i}
-              d={data}
-              fill={fillArea ? (Color[i] ? Color[i] : '#000') : 'none'}
-              stroke={Color[i] ? Color[i] : '#000'}
-              strokeWidth={lineWidth}
-            />
-          );
-        });
+      : animation
+          ? _.map (linePointsData, (data, i) => {
+              this.lineAnimated[i] = createLineProps (data);
+              return (
+                <NativePath
+                  {...this.lineAnimated[i]}
+                  strokeOpacity={lineStrokeOpacity}
+                  key={i}
+                  fill={'none'}
+                  stroke={Color[i] ? Color[i] : '#000'}
+                  strokeWidth={lineWidth}
+                />
+              );
+            })
+          : _.map (linePointsData, (data, i) => {
+              return (
+                <Path
+                  strokeOpacity={lineStrokeOpacity}
+                  strokeDasharray={showDashedLine ? lineStrokeDashArray[i] : ''}
+                  key={i}
+                  d={data}
+                  fill={fillArea ? (Color[i] ? Color[i] : '#000') : 'none'}
+                  stroke={Color[i] ? Color[i] : '#000'}
+                  strokeWidth={lineWidth}
+                />
+              );
+            });
     let dataPointsColor = buildColorArray (data, Color);
 
     let pointData = calculateOverallLineChartData (data);
@@ -326,6 +378,7 @@ export default class MulipleLineChart extends Component {
 
       return linePointsData;
     }
+    if (animation) this.animate ();
   }
 
   render () {
