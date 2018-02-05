@@ -165,6 +165,8 @@ Note: In case of any misunderstanding please go through the example.
 
  -  Implement draw line animation - Check (Thanks Waheguruji 🙏)
 
+ -  Add Stagger animation in data points
+
  -  Add test
  
  -  Add custom legend - Check (Two kind of legend available, circle and rectangle)
