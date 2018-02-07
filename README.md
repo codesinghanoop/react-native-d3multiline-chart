@@ -156,6 +156,9 @@ Note: In case of any misunderstanding please go through the example.
 | hideXAxis | propTypes.bool |
 | hideYAxis | propTypes.bool |
 | inclindTick | propTypes.bool |
+| animation | propTypes.bool |
+| duration | propTypes.number |
+| delay | propTypes.number |
 
 ----------
 
