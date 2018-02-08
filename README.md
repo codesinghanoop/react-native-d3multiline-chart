@@ -11,6 +11,8 @@ Android and iOS multiline/line/scatterPoint chart based on d3.js
 
 **Try the example app**
 
+![](https://github.com/codesinghanoop/react-native-d3multiline-chart/blob/master/Images/staggeredAnimation.gif)
+
 ![](https://github.com/codesinghanoop/react-native-d3multiline-chart/blob/master/Images/Drawing_line_Animation.gif)
 
 ![](https://github.com/codesinghanoop/react-native-d3multiline-chart/blob/master/Images/fillArea.png)
@@ -20,8 +22,6 @@ Android and iOS multiline/line/scatterPoint chart based on d3.js
 ![](https://github.com/codesinghanoop/react-native-d3multiline-chart/blob/master/Images/example.png)
 
 ![](https://github.com/codesinghanoop/react-native-d3multiline-chart/blob/master/Images/dashedLine.png)
-
-![](https://github.com/codesinghanoop/react-native-d3multiline-chart/blob/master/Images/scatterPoints.png)
 
 **Usage**
 Note: In case of any misunderstanding please go through the example.
@@ -159,6 +159,8 @@ Note: In case of any misunderstanding please go through the example.
 | animation | propTypes.bool |
 | duration | propTypes.number |
 | delay | propTypes.number |
+| staggerLength | propTypes.number |
+| speed | propTypes.number |
 
 ----------
 
@@ -168,7 +170,7 @@ Note: In case of any misunderstanding please go through the example.
 
  -  Implement draw line animation - Check (Thanks Waheguruji 🙏)
 
- -  Add Stagger animation in data points
+ -  Add Stagger animation in data points - Check
 
  -  Add test
  
