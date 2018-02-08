@@ -6,6 +6,7 @@ import * as scale from 'd3-scale';
 import _ from 'lodash';
 import createLegend from './utils/createLegend';
 import NativePath from './AnimatedSVG';
+import NativeCircle from './AnimatedSVGCircle';
 import {svgPathProperties} from 'svg-path-properties';
 import {
   calculateOverallLineChartData,
@@ -94,6 +95,8 @@ export default class MulipleLineChart extends Component {
     animation: true,
     delay: 500,
     duration: 2000,
+    staggerLength: 200,
+    speed: 40,
   };
 
   constructor (props) {
@@ -102,17 +105,41 @@ export default class MulipleLineChart extends Component {
   }
 
   animate () {
-    const {delay, duration} = this.props;
+    const {
+      delay,
+      duration,
+      staggerLength,
+      speed,
+      circleRadius,
+      data,
+    } = this.props;
     const animate = [Animated.delay (delay)];
-    this.lineAnimated.forEach (element => {
+    let counter = 0;
+    this.lineAnimated.forEach ((element, j) => {
+      let staggerCircle = [];
+      console.log ('the counter is', counter);
+      for (let k = counter; k < data[j].length + counter; k++) {
+        staggerCircle.push (
+          Animated.spring (this.AnimatedPoints[k].r, {
+            toValue: circleRadius,
+            speed,
+          })
+        );
+      }
+      this.AnimatedPoints.map ((point, i) => {
+        if (i < data[j].length + counter && i >= counter) return;
+        return null;
+      });
       animate.push (
         Animated.parallel ([
           Animated.timing (element.strokeDashoffset, {
             toValue: 0,
             duration,
           }),
-        ])
+        ]),
+        Animated.stagger (staggerLength, staggerCircle)
       );
+      counter = counter + data[j].length;
     });
     Animated.sequence (animate).start ();
   }
@@ -323,9 +350,12 @@ export default class MulipleLineChart extends Component {
     let dataPointsColor = buildColorArray (data, Color);
 
     let pointData = calculateOverallLineChartData (data);
+    this.AnimatedPoints = new Array (pointData.length);
+    // console.log ('the anim points are', this.AnimatedPoints[0]);
     circleInFirstLine = dataPointsVisible
-      ? _.map (pointData, function (d, i) {
+      ? _.map (pointData, (d, i) => {
           let text;
+          this.AnimatedPoints[i] = createCircleProps (d, dataPointsColor[i]);
           text = (
             <Text
               fontSize={chartFontSize}
@@ -337,18 +367,24 @@ export default class MulipleLineChart extends Component {
                 : pointDataToShowOnGraph == 'X' ? d.x : ''}
             </Text>
           );
+          console.log ('the anim points are', this.AnimatedPoints[i]);
           return (
             <G key={i}>
-              <Circle
-                key={'circle_' + i}
-                strokeWidth={circleRadiusWidth}
-                stroke={dataPointsColor[i]}
-                d={d.x}
-                fill={'white'}
-                cx={xScale (d.x) + 10}
-                cy={yScale (d.y)}
-                r={circleRadius}
-              />
+              {animation
+                ? <NativeCircle
+                    key={'circle_' + i}
+                    {...this.AnimatedPoints[i]}
+                  />
+                : <Circle
+                    key={'circle_' + i}
+                    strokeWidth={circleRadiusWidth}
+                    stroke={dataPointsColor[i]}
+                    d={d.x}
+                    fill={'white'}
+                    cx={xScale (d.x) + 10}
+                    cy={yScale (d.y)}
+                    r={circleRadius}
+                  />}
               {text}
             </G>
           );
@@ -377,6 +413,16 @@ export default class MulipleLineChart extends Component {
       }
 
       return linePointsData;
+    }
+    function createCircleProps (d, strokeColor) {
+      return {
+        r: new Animated.Value (0),
+        cx: xScale (d.x) + 10,
+        cy: yScale (d.y),
+        stroke: strokeColor,
+        strokeWidth: circleRadiusWidth,
+        fill: 'white',
+      };
     }
     if (animation) this.animate ();
   }

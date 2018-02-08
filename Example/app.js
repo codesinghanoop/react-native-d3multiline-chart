@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, TouchableOpacity, Dimensions} from 'react-native';
 import Svg, {Circle, Line, G, Path, Text, Rect} from 'react-native-svg';
 import * as d3 from 'd3';
 import * as scale from 'd3-scale';
 import _ from 'lodash';
 import {MultiLineChart} from 'react-native-d3multiline-chart';
+
+const deviceWidth = Dimensions.get ('window').width;
+const deviceHeight = Dimensions.get ('window').height;
 
 var data = [
   [
@@ -236,6 +239,12 @@ export default class Example extends Component {
           animation={true}
           duration={1500}
           delay={1000}
+          GraphHeight={300}
+          GraphWidth={deviceWidth}
+          chartWidth={deviceWidth - 20}
+          chartHeight={250}
+          staggerLength={220}
+          speed={50}
         />
       </View>
     );
@@ -246,7 +255,5 @@ const styles = StyleSheet.create ({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'blue',
   },
 });
