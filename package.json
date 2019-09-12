@@ -35,6 +35,6 @@
   "dependencies": {
     "d3": "4.10.0",
     "d3-shape": "^1.2.0",
-    "react-native-svg": "^5.4.1"
+    "react-native-svg": "^9.6.2"
   }
 }
